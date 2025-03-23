@@ -89,11 +89,13 @@ void setDisplayValue(uint16_t value) {
   */
 void triggerInt0() {
   int0Time = micros();
-  int0Triggered = 1;
+  int0Triggered = true;
+  DEBUG_PRINTLN("Interrupt 0!");
 }
 void triggerInt1() {
   int1Time = micros();
-  int1Triggered = 1;
+  int1Triggered = true;
+  DEBUG_PRINTLN("Interrupt 1!");
 }
 
 /**
@@ -114,7 +116,7 @@ void transitionToCPATURE() {
 
   // attach interrupts
   attachInterrupt(digitalPinToInterrupt(PIN_INT_0), triggerInt0, INTERRUPT_DIR);
-  attachInterrupt(digitalPinToInterrupt(PIN_INT_1), triggerInt0, INTERRUPT_DIR);
+  attachInterrupt(digitalPinToInterrupt(PIN_INT_1), triggerInt1, INTERRUPT_DIR);
 
   // set FSM state
   state = CAPTURE;
@@ -132,7 +134,6 @@ void stateINIT() {
   bool sig0 = digitalRead(PIN_INT_0);
   bool sig1 = digitalRead(PIN_INT_1);
 
-
   // display the state of the signals
   setDisplayDigit(0, sig1);
   blankDisplayDigit(1);
@@ -148,8 +149,10 @@ void stateINIT() {
   // if both pins are ready
   if (sig0 == readySignalState && sig1 == readySignalState) {
     // if the counter is 0, then set it to current millis
-    if (initTimer == 0){
-      initTimer == millis();
+    if (initTimer == 0) {
+      initTimer = millis();
+      DEBUG_PRINT("INIT: Starting timer at ");
+      DEBUG_PRINTLN(initTimer);
       return;
     }
 

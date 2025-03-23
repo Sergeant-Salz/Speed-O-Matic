@@ -4,12 +4,12 @@
   */
 
 // interrupt pins used for the light barrier
-const uint8_t PIN_INT_0 = 12;
-const uint8_t PIN_INT_1 = 13;
+const uint8_t PIN_INT_0 = 2;
+const uint8_t PIN_INT_1 = 3;
 
 // display drivers shared pins
-const uint8_t PIN_BCD_A = 2;
-const uint8_t PIN_BCD_B = 3;
+const uint8_t PIN_BCD_A = 12;
+const uint8_t PIN_BCD_B = 13;
 const uint8_t PIN_BCD_C = 4;
 const uint8_t PIN_BCD_D = 5;
 const uint8_t PIN_nLT = 6; // light test

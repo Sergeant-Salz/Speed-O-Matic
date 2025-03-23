@@ -1,15 +1,15 @@
 // include pin mapping for the respective chip
 #include "board_arduino_uno.h"
 // direction of the interrupt to await
-#define INTERRUPT_DIR FALLING
+#define INTERRUPT_DIR RISING
 // makros for serial debugging
 #define ENABLE_SERIAL_DEBUG
 #ifdef ENABLE_SERIAL_DEBUG
   #define DEBUG_PRINT(VAL) (Serial.print(VAL))
-  #define DEBUG_PRINT_NUM(TXT, NUM) (Serial.print(TXT); Serial.print(NUM); Serial.print("\n"))
+  #define DEBUG_PRINTLN(VAL) (Serial.println(VAL))
 #else
   #define DEBUG_PRINT(VAL) ({})
-  #define DEBUG_PRINT_NUM(TXT, NUM) ({})
+  #define DEBUG_PRINTLN(TXT, NUM) ({})
 #endif
 
 
@@ -89,7 +89,7 @@ void stateGENERAL_ERROR(uint8_t errCode);
 // stores time in microsecounds
 // ref: https://docs.arduino.cc/language-reference/en/functions/time/micros/
 volatile unsigned long int0Time, int1Time;
-volatile bool int0Triggered = 0, int1Triggered = 0;
+volatile bool int0Triggered = false, int1Triggered = false;
 
 // state machine
 // not volatile, as is should be managed in the main loop
@@ -141,6 +141,7 @@ void loop() {
     DEBUG_PRINT("FSM Reset into INIT\n");
   }
 
+  // TODO: Without the dely here, the display breaks
   delay(100);
 
   // execute the respective routine
@@ -149,15 +150,12 @@ void loop() {
       stateINIT();
       break;
     case CAPTURE:
-      DEBUG_PRINT("State CAPTURE\n");
       stateCAPTURE();
       break;
     case TRIGGERED_0:
-      DEBUG_PRINT("State TRIGGERED_0\n");
       stateTRIGGERED();
       break;
     case CAPTURE_DONE:
-      DEBUG_PRINT("State CAPTURE_DONE\n");
       stateCAPTURE_DONE();
       break;
     case OOO_ERROR:
