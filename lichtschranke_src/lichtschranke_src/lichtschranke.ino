@@ -64,10 +64,10 @@ void setDisplayDigit(uint8_t digit, uint8_t value) {
       return;
   }
   // pull high
-  digitalWrite(digitLatchPin, HIGH);
+  digitalWrite(digitLatchPin, LOW);
   // satisfy hold time
   nsDelay(90);
-  digitalWrite(digitLatchPin, LOW);
+  digitalWrite(digitLatchPin, HIGH);
 }
 
 
@@ -88,14 +88,16 @@ void setDisplayValue(uint16_t value) {
   * Sets current time and triggerd flag.
   */
 void triggerInt0() {
-  int0Time = micros();
+  int0Time = millis();
   int0Triggered = true;
-  DEBUG_PRINTLN("Interrupt 0!");
+  DEBUG_PRINT("Interrupt 0 at: ");
+  DEBUG_PRINTLN(int0Time);
 }
 void triggerInt1() {
-  int1Time = micros();
+  int1Time = millis();
   int1Triggered = true;
-  DEBUG_PRINTLN("Interrupt 1!");
+  DEBUG_PRINT("Interrupt 1 at: ");
+  DEBUG_PRINTLN(int1Time);
 }
 
 /**
@@ -239,7 +241,7 @@ void stateTRIGGERED() {
   * Display the time delta between the two interrupts.
   */
 void stateCAPTURE_DONE() {
-  unsigned long delta = millis() - int0Time;
+  unsigned long delta = int1Time - int0Time;
   setDisplayValue(delta);
 }
 

@@ -122,6 +122,10 @@ void setup() {
   // set default value for some outputs
   digitalWrite(PIN_nLT, HIGH);
   digitalWrite(PIN_nBI, HIGH);
+  digitalWrite(PIN_LE_0, HIGH);
+  digitalWrite(PIN_LE_1, HIGH);
+  digitalWrite(PIN_LE_2, HIGH);
+  digitalWrite(PIN_LE_3, HIGH);
 
   // setup FSM
   state = INIT;
@@ -140,9 +144,6 @@ void loop() {
     state = INIT;
     DEBUG_PRINT("FSM Reset into INIT\n");
   }
-
-  // TODO: Without the dely here, the display breaks
-  delay(100);
 
   // execute the respective routine
   switch(state) {
