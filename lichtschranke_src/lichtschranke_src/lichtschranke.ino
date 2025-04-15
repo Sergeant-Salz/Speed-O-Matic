@@ -184,7 +184,7 @@ void stateCAPTURE() {
     return;
 
   // it might happen that both interrupts trigger between an iteration of the loop
-  // in that case, decide the next based on the time delta
+  // in that case, decide the next state based on the time delta
   if (int0Triggered && int1Triggered) {
     detachInterrupt(digitalPinToInterrupt(PIN_INT_0));
     detachInterrupt(digitalPinToInterrupt(PIN_INT_1));
@@ -250,7 +250,7 @@ void stateCAPTURE_DONE() {
   * Display a 9 on all displays.
   */
 void stateOOO_ERROR() {
-  // show all 0's
+  // show all 9's
   setDisplayDigit(0, 9);
   setDisplayDigit(1, 9);
   setDisplayDigit(2, 9);

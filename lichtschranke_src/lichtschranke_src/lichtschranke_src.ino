@@ -1,15 +1,15 @@
 // include pin mapping for the respective chip
-#include "board_arduino_uno.h"
+#include "board_atmega168.h"
 // direction of the interrupt to await
 #define INTERRUPT_DIR RISING
 // makros for serial debugging
-#define ENABLE_SERIAL_DEBUG
+// #define ENABLE_SERIAL_DEBUG
 #ifdef ENABLE_SERIAL_DEBUG
   #define DEBUG_PRINT(VAL) (Serial.print(VAL))
   #define DEBUG_PRINTLN(VAL) (Serial.println(VAL))
 #else
   #define DEBUG_PRINT(VAL) ({})
-  #define DEBUG_PRINTLN(TXT, NUM) ({})
+  #define DEBUG_PRINTLN(VAL) ({})
 #endif
 
 
