@@ -3325,6 +3325,12 @@
 		(uuid "2ebac54f-1a6b-4bdf-84a8-0892680c9ad4")
 	)
 	(junction
+		(at 45.72 68.58)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "3477562f-9416-48aa-882a-fcf0bca17c46")
+	)
+	(junction
 		(at 76.2 175.26)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -3499,20 +3505,12 @@
 		(uuid "f8697287-47f2-4067-83f4-fa30a4dc0938")
 	)
 	(no_connect
-		(at 48.26 69.85)
-		(uuid "04b3c6f2-81c1-4bc3-a84d-f133e1c40c62")
-	)
-	(no_connect
 		(at 167.64 116.84)
 		(uuid "08368ba2-5159-488e-91c8-53446def3dc3")
 	)
 	(no_connect
 		(at 60.96 90.17)
 		(uuid "2c36373f-8c94-4bff-9056-4f3109659787")
-	)
-	(no_connect
-		(at 60.96 130.81)
-		(uuid "2e789a1f-f067-4c5f-9d6c-eb9172f29daf")
 	)
 	(no_connect
 		(at 60.96 133.35)
@@ -3549,10 +3547,6 @@
 	(no_connect
 		(at 151.13 85.09)
 		(uuid "8697a374-102b-4de2-abe5-5eb67a215a12")
-	)
-	(no_connect
-		(at 60.96 128.27)
-		(uuid "8b7c5caf-fd0c-40ee-a263-2d2f38d0cdac")
 	)
 	(no_connect
 		(at 60.96 95.25)
@@ -3681,6 +3675,16 @@
 			(type default)
 		)
 		(uuid "120ea9a0-dab3-474b-8245-8489430fd927")
+	)
+	(wire
+		(pts
+			(xy 60.96 128.27) (xy 76.2 128.27)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "12804612-7156-4366-937e-8a0231eb504d")
 	)
 	(wire
 		(pts
@@ -3834,7 +3838,7 @@
 	)
 	(wire
 		(pts
-			(xy 45.72 66.04) (xy 45.72 69.85)
+			(xy 45.72 66.04) (xy 45.72 68.58)
 		)
 		(stroke
 			(width 0)
@@ -3931,16 +3935,6 @@
 			(type default)
 		)
 		(uuid "3e69ff16-69ea-409c-8cc7-20d765a369e8")
-	)
-	(wire
-		(pts
-			(xy 71.12 123.19) (xy 60.96 123.19)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "3eaa83d0-2e8a-4a49-94d6-da1de0d2b107")
 	)
 	(wire
 		(pts
@@ -4114,6 +4108,16 @@
 	)
 	(wire
 		(pts
+			(xy 60.96 130.81) (xy 71.12 130.81)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "58dd6546-1c24-4a67-9a75-3ea2a0621d6f")
+	)
+	(wire
+		(pts
 			(xy 58.42 157.48) (xy 64.77 157.48)
 		)
 		(stroke
@@ -4191,16 +4195,6 @@
 			(type default)
 		)
 		(uuid "6961378e-803a-4aad-af92-a137dd02c24e")
-	)
-	(wire
-		(pts
-			(xy 76.2 120.65) (xy 76.2 146.05)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "6cbef90a-0cb5-4fd9-8d71-632ee4d318c0")
 	)
 	(wire
 		(pts
@@ -4291,16 +4285,6 @@
 			(type default)
 		)
 		(uuid "793f86df-eb62-4554-a270-d13876cfdc2f")
-	)
-	(wire
-		(pts
-			(xy 76.2 120.65) (xy 60.96 120.65)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "818baedc-868d-4033-83a1-17238ed3c059")
 	)
 	(wire
 		(pts
@@ -4684,16 +4668,6 @@
 	)
 	(wire
 		(pts
-			(xy 71.12 123.19) (xy 71.12 146.05)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "c5339d80-e822-4df3-a0c3-e79f453c2815")
-	)
-	(wire
-		(pts
 			(xy 172.72 142.24) (xy 175.26 142.24)
 		)
 		(stroke
@@ -4701,6 +4675,16 @@
 			(type default)
 		)
 		(uuid "c57fe017-8fd3-41b6-aa79-fe0843f34c5a")
+	)
+	(wire
+		(pts
+			(xy 48.26 69.85) (xy 48.26 68.58)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "c5ee3c74-3e50-4497-91f5-95915be8fe9a")
 	)
 	(wire
 		(pts
@@ -4761,6 +4745,16 @@
 			(type default)
 		)
 		(uuid "cc8e4a60-b509-485b-a417-78d64847ef28")
+	)
+	(wire
+		(pts
+			(xy 45.72 68.58) (xy 48.26 68.58)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d1ebb744-8906-4e9d-9723-f481f624c698")
 	)
 	(wire
 		(pts
@@ -4854,6 +4848,16 @@
 	)
 	(wire
 		(pts
+			(xy 45.72 68.58) (xy 45.72 69.85)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e9a312fe-37ec-4488-bb29-489848b351e1")
+	)
+	(wire
+		(pts
 			(xy 138.43 82.55) (xy 140.97 82.55)
 		)
 		(stroke
@@ -4931,6 +4935,26 @@
 			(type default)
 		)
 		(uuid "f7b7c066-ad4a-43d3-9988-0ffa5aabc3e4")
+	)
+	(wire
+		(pts
+			(xy 71.12 130.81) (xy 71.12 146.05)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "fd27c9ce-27fc-46c4-bf0f-a4709f583c3f")
+	)
+	(wire
+		(pts
+			(xy 76.2 128.27) (xy 76.2 146.05)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ff4ae264-5606-4d39-bcff-8151e7be09f2")
 	)
 	(label "BCD_INPUT_D"
 		(at 96.52 48.26 180)
@@ -5914,7 +5938,7 @@
 				)
 			)
 		)
-		(property "Footprint" "TestPoint:TestPoint_Pad_1.0x1.0mm"
+		(property "Footprint" "footprint_library:TestPoint_Pad_1.0x1.0mm_wide"
 			(at 71.12 140.97 0)
 			(effects
 				(font
@@ -11125,7 +11149,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "TestPoint:TestPoint_Pad_1.0x1.0mm"
+		(property "Footprint" "footprint_library:TestPoint_Pad_1.0x1.0mm_wide"
 			(at 76.2 151.13 0)
 			(effects
 				(font
@@ -11192,7 +11216,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "TestPoint:TestPoint_Pad_1.0x1.0mm"
+		(property "Footprint" "footprint_library:TestPoint_Pad_1.0x1.0mm_wide"
 			(at 58.42 115.57 0)
 			(effects
 				(font
@@ -11507,7 +11531,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "TestPoint:TestPoint_Pad_1.0x1.0mm"
+		(property "Footprint" "footprint_library:TestPoint_Pad_1.0x1.0mm_wide"
 			(at 59.69 60.96 0)
 			(effects
 				(font
@@ -11710,7 +11734,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "TestPoint:TestPoint_Pad_1.0x1.0mm"
+		(property "Footprint" "footprint_library:TestPoint_Pad_1.0x1.0mm_wide"
 			(at 68.58 26.67 0)
 			(effects
 				(font
