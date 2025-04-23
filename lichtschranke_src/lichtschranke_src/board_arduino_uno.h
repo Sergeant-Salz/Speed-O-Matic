@@ -20,3 +20,9 @@ const uint8_t PIN_LE_1 = 9;
 const uint8_t PIN_LE_2 = 10;
 const uint8_t PIN_LE_3 = 11;
 
+/**
+ * Board specific setup.
+ */
+void boardSpecificSetup() {
+  // nothing to be done here
+}

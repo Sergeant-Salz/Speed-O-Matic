@@ -2,6 +2,7 @@
 #include "board_atmega168.h"
 // direction of the interrupt to await
 #define INTERRUPT_DIR RISING
+
 // makros for serial debugging
 // #define ENABLE_SERIAL_DEBUG
 #ifdef ENABLE_SERIAL_DEBUG
@@ -129,6 +130,9 @@ void setup() {
 
   // setup FSM
   state = INIT;
+
+  // run board-specific setup
+  boardSpecificSetup();
 
   // enable serial if debugging is enabled
   #ifdef ENABLE_SERIAL_DEBUG
