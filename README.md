@@ -53,7 +53,7 @@ The microcontroller is programmed via the Arduino platform. The core logic is im
   - Currently unused; reserved for future error handling scenarios.
 
 ```mermaid
-graph FSM;
+graph TD;
     INIT-->CAPTURE;
     CAPTURE-->TRIGGERED_0;
     CAPTURE-->OOO_ERROR;
