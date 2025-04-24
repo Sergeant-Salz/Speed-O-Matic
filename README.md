@@ -1,6 +1,7 @@
 # Speed'o'Matic
 
-A circuit to measure the exit velocity of a projectile in my [Potato Cannon](https://en.wikipedia.org/wiki/Potato_cannon).
+A small hardware/software project to build a velocity sensor for my [potato cannon](https://en.wikipedia.org/wiki/Potato_cannon).  
+Using two strips of tinfoil stretched across a pipe, which are torn by the passing projectile, this system measures the travel time and calculates the velocity of the potato. Results are shown on a set of ultra-bright 7-segment displays.
 
 ## Overview
 
@@ -22,7 +23,7 @@ An extra push-button is included for potential future use in the software.
 
 ## Software
 
-The microcontroller is programmed via the Arduino platform. The core logic is implemented as a state machine in `lichtschranke.ino`, with board-specific port definitions in separate header files.
+The microcontroller is programmed via the Arduino platform and [MiniCore](https://github.com/MCUdude/MiniCore) board support package. The core logic is implemented as a state machine in `lichtschranke.ino`, with board-specific port definitions in separate header files.
 
 ### State Descriptions
 
@@ -71,3 +72,7 @@ The barrier sensors are currently routed to general-purpose pins, requiring the 
 ### USB-A Connector
 
 The board currently includes a footprint for a USB-A connector, originally intended as an alternate power source. However, USB-A is poorly suited for this purpose. Consider replacing it with a USB micro-B or USB-C connector, or removing it altogether in future revisions.
+
+### LED Brightness
+
+The displays may actually be *too* bright for some conditions. In future revisions, consider using higher-value segment resistors to reduce brightness and power consumption, especially for indoor or low-light use.
