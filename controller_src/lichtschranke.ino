@@ -76,10 +76,10 @@ void setDisplayDigit(uint8_t digit, uint8_t value) {
   * @param value Binary coded value to display.
   */ 
 void setDisplayValue(uint16_t value) {
-  setDisplayDigit(0, value % 10);
-  setDisplayDigit(1, (value / 10) % 10);
-  setDisplayDigit(2, (value / 100) % 10);
-  setDisplayDigit(3, (value / 1000) % 10);
+  setDisplayDigit(3, value % 10);
+  setDisplayDigit(2, (value / 10) % 10);
+  setDisplayDigit(1, (value / 100) % 10);
+  setDisplayDigit(0, (value / 1000) % 10);
 }
 
 
