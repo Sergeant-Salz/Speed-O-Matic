@@ -7,6 +7,9 @@
 const uint8_t PIN_INT_0 = 1;
 const uint8_t PIN_INT_1 = 0;
 
+// pin for the external push-button
+const uint8_t PIN_BUTTON = 2;
+
 // display drivers shared pins
 const uint8_t PIN_BCD_A = 8;
 const uint8_t PIN_BCD_B = 9;

@@ -1,10 +1,10 @@
 // include pin mapping for the respective chip
-#include "board_arduino_uno.h"
+#include "board_atmega168.h"
 // direction of the interrupt to await
 #define INTERRUPT_DIR RISING
 
 // makros for serial debugging
-#define ENABLE_SERIAL_DEBUG
+// #define ENABLE_SERIAL_DEBUG
 #ifdef ENABLE_SERIAL_DEBUG
   #define DEBUG_PRINT(VAL) (Serial.print(VAL))
   #define DEBUG_PRINTLN(VAL) (Serial.println(VAL))
@@ -100,7 +100,7 @@ FSMState state = INIT;
 // always reset to 0 after exiting the state
 unsigned long initTimer = 0;
 
-// flag to indicate that the software reset has been issued
+// flag to indicate that the software reset has been issued asynchronously
 // will reset FSM to INIT
 volatile bool fsmResetTriggered = 0;
 
@@ -109,6 +109,7 @@ void setup() {
   // setup pins
   pinMode(PIN_INT_0, INPUT);
   pinMode(PIN_INT_1, INPUT);
+  pinMode(PIN_BUTTON, INPUT);
   pinMode(PIN_BCD_A, OUTPUT);
   pinMode(PIN_BCD_B, OUTPUT);
   pinMode(PIN_BCD_C, OUTPUT);
@@ -144,7 +145,7 @@ void setup() {
 
 void loop() {
   // always have the option to reset the FSM to INIT
-  if (fsmResetTriggered) {
+  if (fsmResetTriggered || digitalRead(PIN_BUTTON) == LOW) {
     state = INIT;
     DEBUG_PRINT("FSM Reset into INIT\n");
   }
