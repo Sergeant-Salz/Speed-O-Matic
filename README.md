@@ -1,4 +1,4 @@
-# Tinfoil Barrier
+# Speed'o'Matic
 
 A circuit to measure the exit velocity of a projectile in my [Potato Cannon](https://en.wikipedia.org/wiki/Potato_cannon).
 
