@@ -4,6 +4,14 @@
 	(generator_version "9.0")
 	(uuid "bb748965-e13a-40c1-9af2-16595daca141")
 	(paper "A4")
+	(title_block
+		(title "Speed'o'Matic")
+		(date "2025-04-24")
+		(rev "2")
+		(comment 1 "TODO: Replace USB-A receptacle")
+		(comment 2 "Optional debounce caps for barriers included")
+		(comment 4 "Uses a seperate driver IC for every digit")
+	)
 	(lib_symbols
 		(symbol "Connector:Barrel_Jack"
 			(pin_names
