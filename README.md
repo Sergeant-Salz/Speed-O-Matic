@@ -14,9 +14,11 @@ The circuit is built around an ATMega microcontroller that measures and displays
 
 The ATMega microcontroller handles all logic and is powered via a simple linear regulator. With the currently used LM1084 regulator, the input voltage can range from 5V to 29V.
 
-In addition to measuring time, the microcontroller also drives four 7-segment displays to show timing and status information. To ensure maximum brightness (important for outdoor use), the displays are not multiplexed. Each display is driven by its own MOS4511 driver IC. Combined with 91Ω segment resistors, this setup results in an extremely bright, easily readable output—even in direct sunlight.
+In addition to measuring time, the microcontroller also drives four 7-segment displays to show timing and status information. To ensure maximum brightness (important for outdoor use), the displays are not multiplexed. Each display is driven by its own MOS4511 driver IC. Combined with 91Ω segment resistors, this setup results in an extremely bright, easily readable output - even in direct sunlight.
 
 An extra push-button is included for potential future use in the software.
+
+![Schematic drawing](./resources/schmatic.svg)
 
 ## Software
 
