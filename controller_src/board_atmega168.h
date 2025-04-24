@@ -40,11 +40,14 @@ void attachInterrupt(uint8_t interruptNum, void (*userFunc)(void), int mode) {
   // interruptNum ignored too
   // enable interrupt pins based on above constant
   // set mask to active interrupt pins
-  PCMSK2 |= B00000011;
+  PCMSK2 |= 1 << interruptNum;
 }
 void detachInterrupt(uint8_t interruptNum) {
-  PCMSK2 &= ~B00000011;
+  PCMSK2 &= ~(1 << interruptNum);
 }
+// also overwrite this macro
+#define digitalPinToInterrupt(p) (p)
+
 
 // these will be defined later in the source 
 extern void triggerInt0();

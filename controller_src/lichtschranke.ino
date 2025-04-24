@@ -88,12 +88,16 @@ void setDisplayValue(uint16_t value) {
   * Sets current time and triggerd flag.
   */
 void triggerInt0() {
+  if (int0Triggered)
+    return;
   int0Time = millis();
   int0Triggered = true;
   DEBUG_PRINT("Interrupt 0 at: ");
   DEBUG_PRINTLN(int0Time);
 }
 void triggerInt1() {
+  if (int1Triggered)
+    return;
   int1Time = millis();
   int1Triggered = true;
   DEBUG_PRINT("Interrupt 1 at: ");
@@ -201,7 +205,7 @@ void stateCAPTURE() {
 
   // if int0 is triggerd, proceed to TRIGGERED_0
   if (int0Triggered) {
-    detachInterrupt(digitalPinToInterrupt(PIN_INT_0));  
+    detachInterrupt(digitalPinToInterrupt(PIN_INT_0));
     state = TRIGGERED_0;
     DEBUG_PRINT("FSM transition CAPTURE -> TRIGGERED_0\n");  
   }
