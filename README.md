@@ -17,9 +17,19 @@ The ATMega microcontroller handles all logic and is powered via a simple linear 
 
 In addition to measuring time, the microcontroller also drives four 7-segment displays to show timing and status information. To ensure maximum brightness (important for outdoor use), the displays are not multiplexed. Each display is driven by its own MOS4511 driver IC. Combined with 91Ω segment resistors, this setup results in an extremely bright, easily readable output - even in direct sunlight.
 
-An extra push-button is included for potential future use in the software.
+An extra push-button is included for to reset the software after a completed measurment.
 
-![Schematic drawing](./resources/schmatic.svg)
+![Schematic Drawing](./resources/schematic.svg)
+
+The schematic above shows the complete circuit design.
+
+Below is an image of the assembled PCB.  
+The unpopulated capacitor footprints in the foreground were included for optional input debouncing, in case the mechanical barrier setup introduced signal glitches. In practice, these capacitors were not necessary, but the footprints remain available for future use.
+
+Also note the empty space in the top-left corner, which was intended for a USB-A receptacle. See the [To-Do / Known Issues](#to-do--known-issues) section for more information.
+
+![Assembled PCB](./resources/pcb_assembled.jpg)
+
 
 ## Software
 
