@@ -254,7 +254,7 @@ void stateCAPTURE_DONE() {
   } else {
     // in microsecond mode, blink the digits to indicate they are not millis
     // check if we are in an on- or off-phase
-    if (millis() % (MICROS_DISPLAY_MODE_ON_DURATION + MICROS_DISPLAY_MODE_OFF_DURATION) > MICROS_DISPLAY_MODE_ON_DURATION) {
+    if (millis() % (MICROS_DISPLAY_MODE_ON_DURATION + MICROS_DISPLAY_MODE_OFF_DURATION) > MICROS_DISPLAY_MODE_OFF_DURATION) {
       setDisplayValue(delta);
     } else {
       // clear display
