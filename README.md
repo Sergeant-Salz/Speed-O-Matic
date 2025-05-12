@@ -46,16 +46,11 @@ The microcontroller is programmed via the Arduino platform and [MiniCore](https:
   - Waits for the first foil to break (first interrupt).
   - Displays all zeros.
   - Transitions to `TRIGGERED_0` if the first barrier is broken.
-  - Transitions to `OOO_ERROR` if the second barrier is triggered first.
 
 - **`TRIGGERED_0`**
   - Waits for the second foil to break.
   - Displays the elapsed time since the first barrier was broken.
   - Transitions to `CAPTURE_DONE` once the second barrier is triggered.
-
-- **`OOO_ERROR`**
-  - Triggered if the second barrier is activated before the first.
-  - Indicates an out-of-order error by displaying all nines.
 
 - **`CAPTURE_DONE`**
   - Indicates successful capture; both barriers have been broken in the correct order.
@@ -69,7 +64,6 @@ The microcontroller is programmed via the Arduino platform and [MiniCore](https:
 graph TD;
     INIT-->CAPTURE;
     CAPTURE-->TRIGGERED_0;
-    CAPTURE-->OOO_ERROR;
     TRIGGERED_0-->CAPTURE_DONE;
 ```
 
