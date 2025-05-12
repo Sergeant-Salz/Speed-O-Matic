@@ -53,8 +53,10 @@ The microcontroller is programmed via the Arduino platform and [MiniCore](https:
   - Transitions to `CAPTURE_DONE` once the second barrier is triggered.
 
 - **`CAPTURE_DONE`**
-  - Indicates successful capture; both barriers have been broken in the correct order.
-  - Displays the time delta in milliseconds.
+  - Indicates successful capture; both barriers have been broken.
+  - Displays the time delta...
+    - ... in microseconds if the interval is shorter than 10ms. In this mode, the digit flashes to indicate the unit.
+    - ... in milliseconds if the interval is longer than 10ms. 
   - Returns to `INIT` when the reset button is pressed.
 
 - **`GENERAL_ERROR`**
@@ -68,6 +70,8 @@ graph TD;
 ```
 
 ## To-Do / Known Issues
+
+See this repos issues for up-to-date information.
 
 ### Interrupt Pins
 
