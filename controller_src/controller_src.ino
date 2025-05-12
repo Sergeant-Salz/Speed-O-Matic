@@ -13,6 +13,8 @@
   #define DEBUG_PRINTLN(VAL) ({})
 #endif
 
+const unsigned long MICROS_DISPLAY_MODE_ON_DURATION = 300;
+const unsigned long MICROS_DISPLAY_MODE_OFF_DURATION = 50;
 
 /**
   * State machine states.
@@ -76,11 +78,6 @@ void stateTRIGGERED();
   */
 void stateCAPTURE_DONE();
 /**
-  * Handle the core loop logic for state OOO_ERROR.
-  * Display a 9 on all displays.
-  */
-void stateOOO_ERROR();
-/**
   * Handle the core loop logic for state GENERAL_ERROR.
   * Display the error code on the leftmost digit.
   */
@@ -89,7 +86,7 @@ void stateGENERAL_ERROR(uint8_t errCode);
 // variables to store time in interrupts
 // stores time in microsecounds
 // ref: https://docs.arduino.cc/language-reference/en/functions/time/micros/
-volatile unsigned long int0Time, int1Time;
+volatile unsigned long firstTriggerTime, secondTriggerTime;
 volatile bool int0Triggered = false, int1Triggered = false;
 
 // state machine
@@ -163,9 +160,6 @@ void loop() {
       break;
     case CAPTURE_DONE:
       stateCAPTURE_DONE();
-      break;
-    case OOO_ERROR:
-      stateOOO_ERROR();
       break;
     case GENERAL_ERROR:
       stateGENERAL_ERROR(ERR_UNKNOWN);

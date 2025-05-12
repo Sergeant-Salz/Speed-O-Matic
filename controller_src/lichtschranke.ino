@@ -88,20 +88,30 @@ void setDisplayValue(uint16_t value) {
   * Sets current time and triggerd flag.
   */
 void triggerInt0() {
+  // dont't trigger again
   if (int0Triggered)
     return;
-  int0Time = millis();
+  // check, if this is the first of the two interrups
+  if (!int0Triggered && !int1Triggered)
+    firstTriggerTime = micros();
+  else
+    secondTriggerTime = micros();
   int0Triggered = true;
   DEBUG_PRINT("Interrupt 0 at: ");
-  DEBUG_PRINTLN(int0Time);
+  DEBUG_PRINTLN(micros());
 }
 void triggerInt1() {
+  // dont't trigger again
   if (int1Triggered)
     return;
-  int1Time = millis();
+  // check, if this is the first of the two interrups
+  if (!int0Triggered && !int1Triggered)
+    firstTriggerTime = micros();
+  else
+    secondTriggerTime = micros();
   int1Triggered = true;
   DEBUG_PRINT("Interrupt 1 at: ");
-  DEBUG_PRINTLN(int1Time);
+  DEBUG_PRINTLN(micros());
 }
 
 /**
@@ -188,34 +198,24 @@ void stateCAPTURE() {
     return;
 
   // it might happen that both interrupts trigger between an iteration of the loop
-  // in that case, decide the next state based on the time delta
+  // in that case, go to CAPTURE_DONE
   if (int0Triggered && int1Triggered) {
     detachInterrupt(digitalPinToInterrupt(PIN_INT_0));
     detachInterrupt(digitalPinToInterrupt(PIN_INT_1));
-    if (int1Time - int0Time >= 0) {
-      state = CAPTURE_DONE;
-      DEBUG_PRINT("FSM transition CAPTURE -> CAPTURE_DONE\n");
-    }
-    else {
-      state = OOO_ERROR;
-      DEBUG_PRINT("FSM transition CAPTURE -> OOO_ERROR\n");  
-    }
+    state = CAPTURE_DONE;
+    DEBUG_PRINT("FSM transition CAPTURE -> CAPTURE_DONE\n");
     return;
   }
 
-  // if int0 is triggerd, proceed to TRIGGERED_0
-  if (int0Triggered) {
-    detachInterrupt(digitalPinToInterrupt(PIN_INT_0));
+  // if one interrupt is triggerd, proceed to TRIGGERED_0
+  if (int0Triggered || int1Triggered) {
+    // detach the proper interrupt
+    if (int0Triggered)
+      detachInterrupt(digitalPinToInterrupt(PIN_INT_0));
+    else
+      detachInterrupt(digitalPinToInterrupt(PIN_INT_1));
     state = TRIGGERED_0;
     DEBUG_PRINT("FSM transition CAPTURE -> TRIGGERED_0\n");  
-  }
-
-  // if int1 is triggered, proceed to OOO_ERROR
-  if (int1Triggered) {
-    detachInterrupt(digitalPinToInterrupt(PIN_INT_0));
-    detachInterrupt(digitalPinToInterrupt(PIN_INT_1));
-    state = OOO_ERROR;
-    DEBUG_PRINT("FSM transition CAPTURE -> OOO_ERROR\n");  
   }
 
   return;
@@ -228,16 +228,18 @@ void stateCAPTURE() {
   */
 void stateTRIGGERED() {
   // if int1 is triggerd, proceed to CAPTURE_DONE
-  if (int1Triggered) {
+  if (int1Triggered && int0Triggered) {
+    detachInterrupt(digitalPinToInterrupt(PIN_INT_0));
+    detachInterrupt(digitalPinToInterrupt(PIN_INT_1));
     state = CAPTURE_DONE;
     DEBUG_PRINT("FSM transition TRIGGERED -> CAPTURE_DONE\n");
-    detachInterrupt(digitalPinToInterrupt(PIN_INT_1));
     return;
   }
 
   // otherwise, compute time since first interrupt and display the value
-  unsigned long delta = millis() - int0Time;
-  setDisplayValue(delta);
+  // in this state, show time in milliseconds
+  unsigned long delta = micros() - firstTriggerTime;
+  setDisplayValue(delta / 1000);
 }
 
 /**
@@ -245,20 +247,24 @@ void stateTRIGGERED() {
   * Display the time delta between the two interrupts.
   */
 void stateCAPTURE_DONE() {
-  unsigned long delta = int1Time - int0Time;
-  setDisplayValue(delta);
-}
-
-/**
-  * Handle the core loop logic for state OOO_ERROR.
-  * Display a 9 on all displays.
-  */
-void stateOOO_ERROR() {
-  // show all 9's
-  setDisplayDigit(0, 9);
-  setDisplayDigit(1, 9);
-  setDisplayDigit(2, 9);
-  setDisplayDigit(3, 9);
+  unsigned long delta = secondTriggerTime - firstTriggerTime;
+  // if the time in micros is to large for the display, show milliseconds
+  if (delta >= 10000) {
+    setDisplayValue(delta / 1000);
+  } else {
+    // in microsecond mode, blink the digits to indicate they are not millis
+    // check if we are in an on- or off-phase
+    if (millis() % (MICROS_DISPLAY_MODE_ON_DURATION + MICROS_DISPLAY_MODE_OFF_DURATION) > MICROS_DISPLAY_MODE_ON_DURATION) {
+      setDisplayValue(delta);
+    } else {
+      // clear display
+      blankDisplayDigit(0);
+      blankDisplayDigit(1);
+      blankDisplayDigit(2);
+      blankDisplayDigit(3);
+    }
+  }
+  
 }
 
 /**
