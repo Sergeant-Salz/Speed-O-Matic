@@ -67,6 +67,17 @@ graph TD;
     TRIGGERED_0-->CAPTURE_DONE;
 ```
 
+## Calibration
+
+### Setup Description
+
+For calibration, I used a Siglent SDG1032X function generator to produce precise reference timings on the circuit’s interrupt pins. Waveforms were verified using a Rigol DS1054Z oscilloscope and found to be accurate within a few nanoseconds.
+
+### Measurements
+
+In nanosecond mode, the system was found to be accurate to within ±2%. The shortest measurable delay is around 16 ns, though for intervals below 100 ns, accuracy decreases due to timer resolution limits.
+
+
 ## To-Do / Known Issues
 
 ### Interrupt Pins
@@ -80,3 +91,7 @@ The board currently includes a footprint for a USB-A connector, originally inten
 ### LED Brightness
 
 The displays may actually be *too* bright for some conditions. In future revisions, consider using higher-value segment resistors to reduce brightness and power consumption, especially for indoor or low-light use.
+
+### Timing Accuracy
+
+To achieve higher precision—especially in the low nanosecond range—it may be worthwhile to forgo the Arduino framework and implement the timing-critical functions in bare-metal C. This would provide greater control over the microcontroller's behavior and open the door to low-level optimizations that improve accuracy and determinism.
